@@ -10,13 +10,20 @@ import List from './components/list';
 
 function App() {
   let [deals,setDeals] = useState([])
-  useEffect(()=>{
-    axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1&pageSize=10')
-    .then(dados => {
-      console.log(dados.data)
-      setDeals(dados.data)
-    })
-  },[])
+  let [page, setPage] = useState(0)
+
+  let addDeals= () => {
+    setPage(page+1)
+  }
+
+  useEffect(() => {
+    axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1&pageSize=10&pageNumber=' + page)
+      .then(dados => {
+        console.log(dados.data)
+        setDeals(prevState => prevState.concat(dados.data))
+      })
+  }, [page])
+
 
   return (
     <div className="dh-background">
@@ -26,7 +33,7 @@ function App() {
         <img src="gamer.png" alt="logo" className=' dh-gamer' />
       </div>
       
-      <List deals={deals}/>
+      <List deals={deals} click={addDeals}/>
 
     </div>
   );
