@@ -71,5 +71,64 @@ LIST CSS */
 
 .dh-item-text{
     color: rgb(243, 237, 233);
-    font-size: larger;
+    font-size: x-large;
+}
+
+.dh-item-rating{
+    background-color: #222222;
+    border-radius: 5px;
+    padding: 4px 6px;
+    border:rgba(0, 0, 0) solid 1px;
+    font-size: small !important;
+}
+
+.dh-item-price{
+    margin-left: auto;
+    margin-right: 40px;
+}
+
+.dh-discount-price{
+    font-size: xx-large;
+    color: rgb(243, 237, 233);
+}
+
+
+.dh-crossed-price{
+    text-decoration: line-through;
+    color: darkgrey;
+    font-size: small;
+}
+
+.dh-item-discount{
+    background-color: #222222;
+    border-radius: 5px;
+    padding: 4px 6px;
+    border:rgba(0, 0, 0) solid 1px;
+    font-size: small !important;
+    margin-left: 5px;
+    color:darkgray;
+}
+
+.dh-add-items{
+    height:55px;
+    width: 55px;
+    border-radius: 20px;
+    margin-top: 16px;
+    margin-bottom: 32px;
+    display: grid;
+    place-items: center;
+    font-size: x-large;
+    color: rgb(243, 237, 233);
+    cursor: pointer;
+}
+
+.dh-add-items:hover{
+    background-color: #2f2f2f;
+    box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.60);
+}
+
+.dh-add-items:active{
+    height:53px;
+    width: 53px;
+    margin: 18px 2px 34px 2px;
 }

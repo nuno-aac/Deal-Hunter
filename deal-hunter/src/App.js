@@ -1,18 +1,33 @@
 
 import './css/w3.css';
 import './css/style.css';
+
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import List from './components/list';
 
 
 function App() {
+  let [deals,setDeals] = useState([])
+  useEffect(()=>{
+    axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1&pageSize=10')
+    .then(dados => {
+      console.log(dados.data)
+      setDeals(dados.data)
+    })
+  },[])
+
   return (
     <div className="dh-background">
+
       <div className='dh-center-width dt-header'>
         <img src="logodh3.png" alt="logo" className='w3-margin-top dh-logo'/>
         <img src="gamer.png" alt="logo" className=' dh-gamer' />
       </div>
       
-      <List/>
+      <List deals={deals}/>
+
     </div>
   );
 }
