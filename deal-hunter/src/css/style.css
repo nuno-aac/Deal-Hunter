@@ -2,7 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
 
-
+div{
+    font-family: 'Maven Pro', sans-serif;
+}
 
 .dh-background {
     background-image: url('bg.jpg');
@@ -131,4 +133,32 @@ LIST CSS */
     height:53px;
     width: 53px;
     margin: 18px 2px 34px 2px;
+}
+
+.dh-loading{
+    margin-top: 16px;
+    margin-bottom: 32px;
+}
+
+.dh-filter{
+    filter: invert(99%) sepia(79%) saturate(543%) hue-rotate(293deg) brightness(107%) contrast(91%);
+    height:30px;
+    width:30px;
+}
+
+.dh-filter-container{
+    position:absolute;
+    left:80%;
+
+    display:grid;
+    place-items: center;
+    height:60px;
+    width:60px;
+    border-radius: 20px;
+}
+
+.dh-filter-container:hover{
+    background-color: #2f2f2f;
+    box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.60);
+    cursor: pointer;
 }
