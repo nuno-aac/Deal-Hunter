@@ -6,7 +6,7 @@ function ListItem({item}){
         <div className="dh-list-item dh-content-box w3-margin dh-center-height">
             <img src={item.thumb} alt={item.title} className='w3-margin w3-round-large w3-border w3-border-black'/>
             <div className='dh-item-text'> 
-                {item.title} <span className='dh-item-rating'>{item.steamRatingPercent}% 👍</span> 
+                {item.title} <span className='dh-item-rating'>{item.metacriticScore}% 👍</span> 
             </div>
             <div className='dh-item-price'>
                 <div className='dh-discount-price'>{item.salePrice}€</div>

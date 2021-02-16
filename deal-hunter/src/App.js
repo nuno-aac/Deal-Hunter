@@ -40,6 +40,8 @@ function App() {
   let [page, setPage] = useState(0)
   let [loading, setLoading] = useState(false)
   let [isModalOpen, setIsModalOpen] = useState(false)
+  let [order, setOrder] = useState('Deal Rating')
+  let [modalOrder, setModalOrder] = useState('Deal Rating')
 
   let addDeals= () => {
     setLoading(true)
@@ -49,18 +51,27 @@ function App() {
   let closeModal = () => {
     setIsModalOpen(false)
   }
+
   let openModal = () => {
     setIsModalOpen(true)
   }
 
+  let orderList = () => {
+    setPage(0)
+    setDeals([])
+    setOrder(modalOrder);
+    closeModal();
+  }
+
   useEffect(() => {
-    axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1&pageSize=10&pageNumber=' + page)
+    console.log();
+    axios.get('https://www.cheapshark.com/api/1.0/deals?onSale=1&storeID=1&pageSize=10&pageNumber=' + page + '&sortBy=' + order)
       .then(dados => {
         console.log(dados.data)
         setDeals(prevState => prevState.concat(dados.data))
         setLoading(false)
       })
-  }, [page])
+  }, [page,order])
 
 
   return (
@@ -77,10 +88,32 @@ function App() {
       <List deals={deals} click={addDeals} loading={loading}/>
 
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} style={customStyles} ariaHideApp={false}>
-        <div className='dh-center-height dh-flex-column'>
-          <div className='w3-xlarge w3-margin-bottom'>Filter:</div>
-          <div>
-            <input type='radio'/><label className='w3-margin-left'> Relevância</label>
+        <div className='dh-flex-column'>
+          <div className='w3-xlarge w3-center w3-margin-bottom'>Ordenar:</div>
+          <form>
+            <div>
+              <input type='radio' name="order" value='Deal Rating' onChange={(e) => setModalOrder(e.target.value)} />
+              <label className='w3-margin-left'> Relevância </label>
+            </div>
+            <div>
+              <input type='radio' name="order" value='Price' onChange={(e) => setModalOrder(e.target.value)} />
+              <label className='w3-margin-left'> Preço ⬆️ </label>
+            </div>
+            <div>
+              <input type='radio' name="order" value='Price&desc=1' onChange={(e) => setModalOrder(e.target.value)} />
+              <label className='w3-margin-left'> Preço ⬇️ </label>
+            </div>
+            <div>
+              <input type='radio' name="order" value='Metacritic' onChange={(e) => setModalOrder(e.target.value)} />
+              <label className='w3-margin-left'> Rating </label>
+            </div>
+            <div>
+              <input type='radio' name="order" value='Savings' onChange={(e) => setModalOrder(e.target.value)} />
+              <label className='w3-margin-left'> Desconto </label>
+            </div>
+          </form>
+          <div className='dh-submit'>
+            <button className='w3-pointer' onClick={orderList}> Ordenar </button>
           </div>
         </div>
       </Modal>
